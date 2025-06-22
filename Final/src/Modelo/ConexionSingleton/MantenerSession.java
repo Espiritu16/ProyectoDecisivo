@@ -1,4 +1,5 @@
 package Modelo.ConexionSingleton;
+import Modelo.ConexionSingleton.ConexionSingleton;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -30,37 +31,44 @@ public class MantenerSession {
 
     
     public boolean autenticarUsuario(String correo, String contrasenaHash) {
-    boolean autenticado = false;
+        boolean autenticado = false;
 
-    // SQL para verificar el usuario y la contraseña en la base de datos
-    String sql = "SELECT idUsuario, nombre, correo, rol FROM Usuario WHERE correo = ? AND contrasena_hash = ?";
+        // SQL para verificar el usuario y la contraseña en la base de datos
+        String sql = "SELECT idUsuario, nombre, correo, rol FROM Usuario WHERE correo = ? AND contrasena_hash = ?";
+        // SQL para actualizar el último acceso
+        String updateQuery = "UPDATE Usuario SET ultimo_acceso = GETDATE() WHERE correo = ?";
 
-    try (Connection conn = ConexionSingleton.getConexion();
-         PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = ConexionSingleton.getConexion();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             PreparedStatement updateStmt = conn.prepareStatement(updateQuery)) {
 
-        stmt.setString(1, correo);           // Establecer el correo del usuario
-        stmt.setString(2, contrasenaHash);   // Establecer la contraseña
+            stmt.setString(1, correo);           // Establecer el correo del usuario
+            stmt.setString(2, contrasenaHash);   // Establecer la contraseña
 
-        ResultSet rs = stmt.executeQuery();
+            ResultSet rs = stmt.executeQuery();
 
-        if (rs.next()) {
-            // Si el usuario es encontrado, establecer la información en la sesión
-            int idUsuario = rs.getInt("idUsuario");
-            String nombre = rs.getString("nombre");
-            String rol = rs.getString("rol");
+            if (rs.next()) {
+                // Si el usuario es encontrado, establecer la información en la sesión
+                int idUsuario = rs.getInt("idUsuario");
+                String nombre = rs.getString("nombre");
+                String rol = rs.getString("rol");
 
-            // Establecer los datos del usuario en la sesión
-            setUsuarioData(idUsuario, nombre, correo, rol);
+                // Establecer los datos del usuario en la sesión
+                setUsuarioData(idUsuario, nombre, correo, rol);
+         // Actualizar la fecha de último acceso
+                updateStmt.setString(1, correo); // Establecer el correo para actualizar
+                updateStmt.executeUpdate(); // Ejecutar la actualización
 
-            autenticado = true;  // El usuario está autenticado
+                autenticado = true;  // El usuario está autenticado
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return autenticado;
     }
 
-    return autenticado;
-}
+
     
     
     // Obtener el idUsuario de la sesión

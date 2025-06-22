@@ -125,6 +125,11 @@ public class VentanaUsuario extends javax.swing.JFrame {
         btnEstadistica.setBackground(new java.awt.Color(102, 153, 255));
         btnEstadistica.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnEstadistica.setText("Estadísticas");
+        btnEstadistica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadisticaActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEstadistica, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 120, 30));
 
         lblUsuario.setFont(new java.awt.Font("Roboto", 1, 15)); // NOI18N
@@ -253,6 +258,43 @@ public class VentanaUsuario extends javax.swing.JFrame {
         // Cerrar la ventana de administración o la actual
         this.dispose();  // Cerrar la ventana actual (puede ser VentanaAdmin o la que sea)
     }//GEN-LAST:event_btnDesloginActionPerformed
+
+    private void btnEstadisticaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticaActionPerformed
+        // Mostrar una ventana de confirmación antes de proceder con la apertura de la ventana de estadísticas
+         int respuesta = JOptionPane.showConfirmDialog(this, 
+             "¿Deseas ver las estadísticas?", 
+             "Confirmación", 
+             JOptionPane.YES_NO_OPTION, 
+             JOptionPane.QUESTION_MESSAGE);
+
+         // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+         if (respuesta == JOptionPane.YES_OPTION) {
+             // Crear una nueva instancia del panel de estadísticas (VentanaEstadistica)
+             VentanaEstadistica ventanaEstadistica = new VentanaEstadistica();
+
+             // Limpiar el panel actual (opcional, si deseas borrar el contenido del panel antes de agregar el nuevo)
+             panelCambiable.removeAll();  // Elimina todos los componentes dentro de panelCambiable
+
+             // Agregar el nuevo panel de estadísticas al panelCambiable
+             panelCambiable.add(ventanaEstadistica);  // Añadir el panel de estadísticas
+
+             // Actualizar la vista para reflejar el cambio de panel
+             panelCambiable.revalidate();   // Revalidar para actualizar el diseño
+             panelCambiable.repaint();      // Volver a pintar el panel para reflejar el cambio
+
+             // Ajustar el tamaño del panel de estadísticas al tamaño disponible en el contenedor
+             ventanaEstadistica.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
+
+             // Si deseas cambiar de Tab en la vista de estadísticas, puedes hacerlo así:
+             // ventanaEstadistica.getTabGeneral().setSelectedIndex(0); // Cambiar al Tab 0 si es necesario
+         } else {
+             // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
+             JOptionPane.showMessageDialog(this, 
+                 "Operación cancelada. No se mostraron las estadísticas.", 
+                 "Cancelado", 
+                 JOptionPane.INFORMATION_MESSAGE);
+         }
+    }//GEN-LAST:event_btnEstadisticaActionPerformed
 
     /**
      * @param args the command line arguments
