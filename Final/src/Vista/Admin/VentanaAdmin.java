@@ -5,6 +5,7 @@ import Vista.Usuario.VentanaRegistro;
 import Modelo.ConexionSingleton.MantenerSession;
 import Vista.Admin.enviarNotificacion;
 import Vista.Admin.tablaRegistros;
+import Vista.Login;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -66,6 +67,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblRol = new javax.swing.JLabel();
         btnTablaRegistro = new javax.swing.JButton();
         btnNotificar = new javax.swing.JToggleButton();
+        btnDeslogin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 60));
@@ -165,6 +167,14 @@ public class VentanaAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(btnNotificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 80, 50));
 
+        btnDeslogin.setText("Deslogear");
+        btnDeslogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDesloginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnDeslogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 120, 30));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 600));
 
         pack();
@@ -261,6 +271,21 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_btnNotificarActionPerformed
 
+    private void btnDesloginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDesloginActionPerformed
+        // Llamamos al método logout de la clase MantenerSession para cerrar la sesión
+        MantenerSession.getInstance().logout();
+
+        // Mostrar mensaje de confirmación
+        JOptionPane.showMessageDialog(this, "Sesión cerrada correctamente.", "Sesión cerrada", JOptionPane.INFORMATION_MESSAGE);
+
+        // Redirigir a la ventana de login
+        Login loginWindow = new Login();  // Crear una nueva instancia de la ventana de login
+        loginWindow.setVisible(true);     // Hacerla visible
+
+        // Cerrar la ventana de administración o la actual
+        this.dispose();  // Cerrar la ventana actual (puede ser VentanaAdmin o la que sea)
+    }//GEN-LAST:event_btnDesloginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -298,6 +323,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDeslogin;
     private javax.swing.JButton btnEstadistica;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JToggleButton btnNotificar;
