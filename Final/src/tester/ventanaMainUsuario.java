@@ -7,7 +7,7 @@ package tester;
 import Modelo.ConexionSingleton.MantenerSession;
 import Modelo.Observer.BotonObservador;
 import Modelo.Observer.Formulario;
-import Vista.VentanaRegistro;
+import Vista.Usuario.VentanaRegistro;
 import java.awt.FlowLayout;
 
 /**

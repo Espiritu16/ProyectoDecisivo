@@ -2,13 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vista;
+package Vista.Admin;
 
 import Controlador.PatronFactory.CrearDAOFactory;
 import Controlador.PatronFactory.CrearEntidadFactoryImpl;
 import Modelo.Observer.BotonObservador;
 import Modelo.Observer.Formulario;
 import Modelo.SugerenciasPrototype.PrototypeNotificacion;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -39,6 +40,7 @@ public class enviarNotificacion extends javax.swing.JFrame {
 
         // Validar los campos al agregar CaretListener
         camposNotificacion();
+        
     }
     
     //nuevo
@@ -91,6 +93,7 @@ public class enviarNotificacion extends javax.swing.JFrame {
         // Para ahora solo mostramos un mensaje
         JOptionPane.showMessageDialog(this, "Notificación enviada a usuario " + idUsuario + " por " + canal);
         this.dispose(); // Cerrar la ventana después de enviar la notificación
+        
     }
     
 
@@ -111,7 +114,7 @@ public class enviarNotificacion extends javax.swing.JFrame {
         btnEnviarNotificacion = new javax.swing.JButton();
         txtMensaje = new javax.swing.JTextArea();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -141,7 +144,7 @@ public class enviarNotificacion extends javax.swing.JFrame {
         jPanel1.add(txtIdUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 70, 320, 30));
 
         comboCanal.setFont(new java.awt.Font("Roboto", 0, 15)); // NOI18N
-        comboCanal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Correo", "Whatsapp", "Mensaje de Texto" }));
+        comboCanal.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "Correo", "Whatsapp", "Mensaje de Texto", "Todos los canales" }));
         jPanel1.add(comboCanal, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 320, 30));
 
         btnEnviarNotificacion.setBackground(new java.awt.Color(153, 255, 153));
@@ -165,10 +168,10 @@ public class enviarNotificacion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEnviarNotificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarNotificacionActionPerformed
-        // Obtener los datos del formulario
-    String dniUsuario = txtIdUsuario.getText();  // Obtenemos el DNI del campo de texto
-    String mensaje = txtMensaje.getText();  // Obtenemos el mensaje
-    String canal = comboCanal.getSelectedItem().toString();  // Obtenemos el canal (Correo, WhatsApp, etc.)
+       // Obtener los datos del formulario
+    String dniUsuario = txtIdUsuario.getText();  // Obtener el DNI del campo de texto
+    String mensaje = txtMensaje.getText();  // Obtener el mensaje
+    String canal = comboCanal.getSelectedItem().toString();  // Obtener el canal (Correo, WhatsApp, SMS)
 
     // Validar que los campos no estén vacíos
     if (dniUsuario.isEmpty() || mensaje.isEmpty() || canal.isEmpty()) {
@@ -176,24 +179,42 @@ public class enviarNotificacion extends javax.swing.JFrame {
         return;
     }
 
-    // Crear una nueva instancia de la notificación
+    // Crear la instancia de PrototypeNotificacion
     PrototypeNotificacion notificacion = new PrototypeNotificacion();
     notificacion.setDni(dniUsuario);  // Usamos el DNI como String
     notificacion.setMensaje(mensaje);
-    notificacion.setEstado("Pendiente");  // O "Enviado", dependiendo del flujo que elijas
+    notificacion.setEstado("Pendiente");  // El estado inicial
     notificacion.setCanal(canal);
 
-    // Llamar al DAO para guardar la notificación
+    // Llamar al DAO para crear la notificación
     CrearDAOFactory factory = new CrearEntidadFactoryImpl();
     int idNotificacion = factory.crearPrototypeNotificacion(notificacion);  // Usamos el método DAO para crear la notificación
 
     // Verificar si la notificación se guardó correctamente
     if (idNotificacion != -1) {
         JOptionPane.showMessageDialog(this, "Notificación enviada con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-        this.dispose();  // Cierra la ventana de notificación después de enviarla
     } else {
         JOptionPane.showMessageDialog(this, "Hubo un error al enviar la notificación. Intenta nuevamente.", "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    // Crear tres notificaciones para diferentes canales (Correo, WhatsApp, SMS)
+    String[] canales = {"Correo", "WhatsApp", "SMS"};
+    
+    // Iteramos a través de los canales y creamos una notificación para cada uno
+    for (String canalSeleccionado : canales) {
+        notificacion.setCanal(canalSeleccionado);
+        int idNotificacionNuevo = factory.crearPrototypeNotificacion(notificacion);
+
+        // Verificar si se creó la notificación para este canal
+        if (idNotificacionNuevo != -1) {
+            System.out.println("Notificación enviada por " + canalSeleccionado + " con ID: " + idNotificacionNuevo);
+        } else {
+            System.out.println("Error al enviar la notificación por " + canalSeleccionado);
+        }
+    }
+
+    // Cerrar la ventana después de enviar las notificaciones
+    this.dispose();  // Cerrar la ventana de notificación después de enviarla
     }//GEN-LAST:event_btnEnviarNotificacionActionPerformed
 
     /**

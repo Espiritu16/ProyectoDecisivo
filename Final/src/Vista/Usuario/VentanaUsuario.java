@@ -1,33 +1,30 @@
-
-package Vista;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package Vista.Usuario;
 
 import Modelo.ConexionSingleton.MantenerSession;
-import Vista.enviarNotificacion;
-import Vista.tablaRegistros;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
-public class VentanaAdmin extends javax.swing.JFrame {
+/**
+ *
+ * @author sankef
+ */
+public class VentanaUsuario extends javax.swing.JFrame {
 
-    //ahora
-    private enviarNotificacion ventanaNotificacion;
-    private tablaRegistros panelTablaRegistros;
-   
-    
+        private VentanaRegistro ventanaRegistroPanel; // Declarar como atributo para reutilizar la instancia si es necesario
+        
     /**
      * Creates new form VentanaPrincipal
      */
-    public VentanaAdmin() {
+    public VentanaUsuario() {
         initComponents();
          
         updateUserInfo();
         // Centrar la ventana en la pantalla
         setLocationRelativeTo(null);  // Esto coloca la ventana en el centro
-        btnRegistro.setEnabled(false);
-        
-  
     }
     
      // Método para actualizar la información del usuario
@@ -58,13 +55,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         panelCambiable = new javax.swing.JPanel();
         btnRegistro = new javax.swing.JButton();
         btnServicios = new javax.swing.JButton();
-        btnNotificaciones = new javax.swing.JButton();
+        btnSugerencias = new javax.swing.JButton();
         btnEstadistica = new javax.swing.JButton();
         lblUsuario = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
         lblRol = new javax.swing.JLabel();
-        btnTablaRegistro = new javax.swing.JButton();
-        btnNotificar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 60));
@@ -81,7 +76,6 @@ public class VentanaAdmin extends javax.swing.JFrame {
         jLabel2.setText("Gestion Responsable de Residuos");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 0, 785, 118));
 
-        panelCambiable.setBackground(new java.awt.Color(0, 255, 204));
         panelCambiable.setMaximumSize(new java.awt.Dimension(700, 400));
         panelCambiable.setMinimumSize(new java.awt.Dimension(700, 400));
 
@@ -113,15 +107,10 @@ public class VentanaAdmin extends javax.swing.JFrame {
         btnServicios.setText("Servicios");
         jPanel1.add(btnServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 30));
 
-        btnNotificaciones.setBackground(new java.awt.Color(102, 153, 255));
-        btnNotificaciones.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        btnNotificaciones.setText("Notificaciones");
-        btnNotificaciones.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNotificacionesActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnNotificaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 130, 30));
+        btnSugerencias.setBackground(new java.awt.Color(102, 153, 255));
+        btnSugerencias.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        btnSugerencias.setText("Sugerencias");
+        jPanel1.add(btnSugerencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 110, 120, 30));
 
         btnEstadistica.setBackground(new java.awt.Color(102, 153, 255));
         btnEstadistica.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
@@ -140,125 +129,53 @@ public class VentanaAdmin extends javax.swing.JFrame {
         lblRol.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel1.add(lblRol, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 200, 30));
 
-        btnTablaRegistro.setBackground(new java.awt.Color(165, 214, 167));
-        btnTablaRegistro.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
-        btnTablaRegistro.setForeground(new java.awt.Color(255, 51, 51));
-        btnTablaRegistro.setText("Tabla De Registros");
-        btnTablaRegistro.setBorder(null);
-        btnTablaRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTablaRegistroActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnTablaRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 200, 50));
-
-        btnNotificar.setBackground(new java.awt.Color(165, 214, 167));
-        btnNotificar.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        btnNotificar.setForeground(new java.awt.Color(51, 51, 255));
-        btnNotificar.setText("Notificar");
-        btnNotificar.setBorder(null);
-        btnNotificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNotificarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnNotificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
-
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 600));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //metodo para Registros pero esta off porque estoy como admin
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-    // Crear una nueva instancia del panel de registro
-    VentanaRegistro ventanaRegistro = new VentanaRegistro();
-    
-    // Limpiar el panel actual (opcional, si deseas borrar el contenido del panel antes de agregar el nuevo)
-    panelCambiable.removeAll();  // Elimina todos los componentes dentro de panelCambiable
-    
-    // Agregar el nuevo panel de registro al panelCambiable
-    panelCambiable.add(ventanaRegistro);  // Añadir el panel de registro
-    
-    // Actualizar la vista para reflejar el cambio de panel
-    panelCambiable.revalidate();   // Revalidar para actualizar el diseño
-    panelCambiable.repaint();      // Volver a pintar el panel para reflejar el cambio
-    
-    // Ajustar el tamaño del panel de registro al tamaño disponible en el contenedor
-    ventanaRegistro.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
-    
-    // Cambiar al Tab 2 (índice 1) cuando se muestra la VentanaRegistro
-    ventanaRegistro.getTabbedPane().setSelectedIndex(1); // Cambiar al Tab 2 (Clasificación de Residuo)
-    
-    // Establecer el foco en el primer campo de texto del tab 2
-    ventanaRegistro.getTxtNombreClaResiduo().requestFocusInWindow();  // Establecer el foco en el primer campo
-    }//GEN-LAST:event_btnRegistroActionPerformed
+    // Mostrar una ventana de confirmación antes de proceder con el registro
+    int respuesta = JOptionPane.showConfirmDialog(this, 
+        "¿Deseas registrar un residuo?", 
+        "Confirmación", 
+        JOptionPane.YES_NO_OPTION, 
+        JOptionPane.QUESTION_MESSAGE);
 
-    //por ahora no se usa esto
-    private void btnNotificacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificacionesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNotificacionesActionPerformed
-
-    //metodo para que se superponga el Jpanel tablaRegistros en panelCambiable
-    private void btnTablaRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTablaRegistroActionPerformed
-         /**
-        tablaRegistros tablaRegistros = new tablaRegistros(); // Asegúrate de tener esta clase creada
-
+    // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+    if (respuesta == JOptionPane.YES_OPTION) {
+        // Crear una nueva instancia del panel de registro
+        VentanaRegistro ventanaRegistro = new VentanaRegistro();
+        
         // Limpiar el panel actual (opcional, si deseas borrar el contenido del panel antes de agregar el nuevo)
         panelCambiable.removeAll();  // Elimina todos los componentes dentro de panelCambiable
-
-        // Agregar el nuevo panel de registros al panelCambiable
-        panelCambiable.add(tablaRegistros);  // Añadir el panel de registros
-
+        
+        // Agregar el nuevo panel de registro al panelCambiable
+        panelCambiable.add(ventanaRegistro);  // Añadir el panel de registro
+        
         // Actualizar la vista para reflejar el cambio de panel
         panelCambiable.revalidate();   // Revalidar para actualizar el diseño
         panelCambiable.repaint();      // Volver a pintar el panel para reflejar el cambio
-
-        // Ajustar el tamaño del panel de registros al tamaño disponible en el contenedor
-        tablaRegistros.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
         
-         */
+        // Ajustar el tamaño del panel de registro al tamaño disponible en el contenedor
+        ventanaRegistro.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
         
-        //nuevo
-        // Crear una nueva instancia del panel de registros
-        tablaRegistros panelTabla = new tablaRegistros(); 
-
-        // Limpiar el panel actual
-        panelCambiable.removeAll();  
-
-        // Crear una nueva instancia de la ventana de notificación
-        ventanaNotificacion = new enviarNotificacion();
-
-        // Pasar la referencia de la ventana de notificación a tablaRegistros
-        panelTabla.setVentanaNotificacion(ventanaNotificacion); 
-
-        // Agregar el nuevo panel de registros al panelCambiable
-        panelCambiable.add(panelTabla);  
-
-        // Actualizar la vista para reflejar el cambio de panel
-        panelCambiable.revalidate();   
-        panelCambiable.repaint();      
-
-        // Ajustar el tamaño del panel de registros al tamaño disponible en el contenedor
-        panelTabla.setSize(panelCambiable.getSize());  
+        // Cambiar al Tab 1 (índice 1) cuando se muestra la VentanaRegistro
+        ventanaRegistro.getTabbedPane().setSelectedIndex(1); // Cambiar al Tab 1 (Registro de Residuo)
         
-    }//GEN-LAST:event_btnTablaRegistroActionPerformed
-
-    private void btnNotificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificarActionPerformed
-        //accion para notificar y se habra el Jframe enviarNotificacion
-        // Primero, verifica si ya se ha seleccionado un DNI en la tabla (esto se hace en tablaRegistros)
-    if (ventanaNotificacion != null) {
-        // Si ya se ha seleccionado un DNI y la ventana de notificación está disponible:
+        // Bloquear el Tab 2 (índice 2) para que no pueda ser seleccionado
+        ventanaRegistro.getTabbedPane().setEnabledAt(2, false); // Desactivar Tab 2
         
-        // Abre la ventana de notificación
-        ventanaNotificacion.setVisible(true);  
-        
-        // El DNI ya fue establecido en la tablaRegistros, se usa en el campo txtIdUsuario de la ventanaNotificacion
+        // Establecer el foco en el primer campo de texto del tab 1 (puedes ajustarlo según lo que necesitas)
+        ventanaRegistro.getTxtNombreClaResiduo().requestFocusInWindow();  // Establecer el foco en el primer campo
     } else {
-        // Si no se ha seleccionado ningún DNI, muestra un mensaje al usuario
-        JOptionPane.showMessageDialog(this, "¡Por favor, selecciona un usuario de la tabla primero!", "Advertencia", JOptionPane.WARNING_MESSAGE);
+        // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
+        JOptionPane.showMessageDialog(this, 
+            "Operación cancelada. No se registró el residuo.", 
+            "Cancelado", 
+            JOptionPane.INFORMATION_MESSAGE);
     }
-    }//GEN-LAST:event_btnNotificarActionPerformed
+    }//GEN-LAST:event_btnRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -277,13 +194,13 @@ public class VentanaAdmin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -291,18 +208,16 @@ public class VentanaAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaAdmin().setVisible(true);
+                new VentanaUsuario().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEstadistica;
-    private javax.swing.JButton btnNotificaciones;
-    private javax.swing.JToggleButton btnNotificar;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnServicios;
-    private javax.swing.JButton btnTablaRegistro;
+    private javax.swing.JButton btnSugerencias;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblCorreo;
@@ -336,11 +251,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
     }
 
     public JButton getBtnSugerencias() {
-        return btnNotificaciones;
+        return btnSugerencias;
     }
 
     public void setBtnSugerencias(JButton btnSugerencias) {
-        this.btnNotificaciones = btnSugerencias;
+        this.btnSugerencias = btnSugerencias;
     }
 
     

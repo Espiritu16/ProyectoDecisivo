@@ -6,7 +6,7 @@ import Modelo.ConexionSingleton.MantenerSession;
 import Modelo.RegistroPrototype.PrototypeClasificacionResiduo;
 import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
 import Modelo.RegistroPrototype.PrototypeResiduo;
-import Vista.VentanaRegistro;
+import Vista.Usuario.VentanaRegistro;
 import javax.swing.JOptionPane;
 
 public class FinalizarCommand implements Command {

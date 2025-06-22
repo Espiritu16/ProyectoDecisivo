@@ -8,6 +8,7 @@ import Modelo.ConexionSingleton.MantenerSession;
 import Modelo.Observer.BotonObservador;
 import Modelo.Observer.Formulario;
 import Modelo.Proxy.UsuarioProxy;
+import Vista.Usuario.Registrarse;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public class Login extends javax.swing.JFrame {
@@ -175,8 +176,11 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-     
-    
+      // Crear la instancia del JFrame "Registrarse"
+        Registrarse ventanaRegistro = new Registrarse();
+        
+        // Mostrar la ventana de registro
+        ventanaRegistro.setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

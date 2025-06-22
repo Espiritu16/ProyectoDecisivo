@@ -1,4 +1,4 @@
-package Vista;
+package Vista.Usuario;
 
 import Modelo.Command.AnteriorCommand;
 import Modelo.Command.Command;
@@ -34,6 +34,7 @@ public class VentanaRegistro extends javax.swing.JPanel {
      * Creates new form VentanaRegistro
      */
     public VentanaRegistro() {
+        
         initComponents();
         txtNombreClaResiduo.requestFocusInWindow();  // Esto hace que el campo obtenga el foco y el usuario pueda empezar a escribir directamente
         txtNombreResiduo.requestFocusInWindow();  // Esto hace que el campo obtenga el foco y el usuario pueda empezar a escribir directamente
@@ -567,7 +568,7 @@ public class VentanaRegistro extends javax.swing.JPanel {
 
     //boton siguiente del panel 2
     private void btnSiguiente2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguiente2ActionPerformed
-             // Cambiar al Tab 3 (Residuo)
+    // Cambiar al Tab 3 (Residuo)
     jTabbedPane1.setSelectedIndex(2); // Cambiar al Tab 3
     
     // Habilitar el Tab 3 (Residuo)
@@ -575,12 +576,22 @@ public class VentanaRegistro extends javax.swing.JPanel {
     
     // Deshabilitar el Tab 2 (Clasificación de Residuo) para evitar que el usuario vuelva atrás
     jTabbedPane1.setEnabledAt(1, false);  // Deshabilitar el tab 2 (Clasificación de Residuo)
+    btnFinalizar.setEnabled(true);
     }//GEN-LAST:event_btnSiguiente2ActionPerformed
 
     //finalizar con el registro
     private void btnFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarActionPerformed
-        
-        
+         // Cambiar al Tab 2 (Clasificación de Residuo)
+    jTabbedPane1.setSelectedIndex(1); // Cambiar al Tab 2
+    
+    // Habilitar el Tab 2 (Clasificación de Residuo)
+    jTabbedPane1.setEnabledAt(1, true);  // Habilitar el tab 2 (Clasificación)
+    
+    // Deshabilitar el Tab 3 (Residuo) hasta que el usuario complete el paso 2
+    jTabbedPane1.setEnabledAt(2, false);  // Deshabilitar el tab 3 (Residuo)
+    
+    // Deshabilitar el Tab 1 (Usuario y Dirección) para evitar que el usuario vuelva atrás
+    jTabbedPane1.setEnabledAt(0, false);  // Deshabilitar el tab 1 (Usuario y Dirección)
     }//GEN-LAST:event_btnFinalizarActionPerformed
 
     private void boxColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boxColorActionPerformed

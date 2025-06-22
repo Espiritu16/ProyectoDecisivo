@@ -1,7 +1,7 @@
 package Modelo.Proxy;
 
-import Vista.VentanaAdmin;
-import Vista.VentanaUsuario;
+import Vista.Admin.VentanaAdmin;
+import Vista.Usuario.VentanaUsuario;
 import tester.ventanaMainUsuario;
 import javax.swing.JOptionPane;
 
