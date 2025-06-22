@@ -11,6 +11,10 @@ import Modelo.RegistroPrototype.PrototypeDireccion;
 import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
 import Modelo.RegistroPrototype.PrototypeResiduo;
 import Modelo.RegistroPrototype.PrototypeUsuario;
+import Modelo.ServiciosDAO.AlertaDAO;
+import Modelo.ServiciosDAO.CentroReciclajeDAO;
+import Modelo.ServiciosPrototype.PrototypeAlerta;
+import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
 import Modelo.SugerenciasDAO.NotificacionesDAO;
 import Modelo.SugerenciasPrototype.PrototypeNotificacion;
 
@@ -44,5 +48,15 @@ public class CrearEntidadFactoryImpl implements CrearDAOFactory {
     @Override
     public int crearPrototypeNotificacion(PrototypeNotificacion notificacion) {
         return new NotificacionesDAO().crear(notificacion);
+    }
+    
+    @Override
+    public int crearCentroReciclaje(PrototypeCentroReciclaje centroReciclaje) {
+        return new CentroReciclajeDAO().crear(centroReciclaje);  // Nuevo DAO para CentroReciclaje
+    }
+    
+    @Override
+    public int crearAlerta(PrototypeAlerta alerta) {
+        return new AlertaDAO().crear(alerta);  // Crear alerta utilizando el DAO
     }
 }

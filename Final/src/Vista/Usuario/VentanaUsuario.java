@@ -110,6 +110,11 @@ public class VentanaUsuario extends javax.swing.JFrame {
         btnServicios.setBackground(new java.awt.Color(102, 153, 255));
         btnServicios.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnServicios.setText("Servicios");
+        btnServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServiciosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 30));
 
         btnSugerencias.setBackground(new java.awt.Color(102, 153, 255));
@@ -194,7 +199,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
     } else {
         // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
         JOptionPane.showMessageDialog(this, 
-            "Operación cancelada. No se registró el residuo.", 
+            "Operación cancelada.", 
             "Cancelado", 
             JOptionPane.INFORMATION_MESSAGE);
     }
@@ -238,7 +243,7 @@ public class VentanaUsuario extends javax.swing.JFrame {
     } else {
         // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
         JOptionPane.showMessageDialog(this, 
-            "Operación cancelada. No se mostraron los mensajes.", 
+            "Operación cancelada.", 
             "Cancelado", 
             JOptionPane.INFORMATION_MESSAGE);
     }
@@ -290,11 +295,48 @@ public class VentanaUsuario extends javax.swing.JFrame {
          } else {
              // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
              JOptionPane.showMessageDialog(this, 
-                 "Operación cancelada. No se mostraron las estadísticas.", 
+                 "Operación cancelada.", 
                  "Cancelado", 
                  JOptionPane.INFORMATION_MESSAGE);
          }
     }//GEN-LAST:event_btnEstadisticaActionPerformed
+
+    private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
+                // Mostrar una ventana de confirmación antes de proceder con la apertura de la ventana de servicios
+         int respuesta = JOptionPane.showConfirmDialog(this, 
+             "¿Deseas ver los servicios?", 
+             "Confirmación", 
+             JOptionPane.YES_NO_OPTION, 
+             JOptionPane.QUESTION_MESSAGE);
+
+         // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+         if (respuesta == JOptionPane.YES_OPTION) {
+             // Crear una nueva instancia del panel de servicios (ventanaServiciosDireccion)
+             ventanaServiciosDireccion ventanaServicios = new ventanaServiciosDireccion();
+
+             // Limpiar el panel actual (opcional, si deseas borrar el contenido del panel antes de agregar el nuevo)
+             panelCambiable.removeAll();  // Elimina todos los componentes dentro de panelCambiable
+
+             // Agregar el nuevo panel de servicios al panelCambiable
+             panelCambiable.add(ventanaServicios);  // Añadir el panel de servicios
+
+             // Actualizar la vista para reflejar el cambio de panel
+             panelCambiable.revalidate();   // Revalidar para actualizar el diseño
+             panelCambiable.repaint();      // Volver a pintar el panel para reflejar el cambio
+
+             // Ajustar el tamaño del panel de servicios al tamaño disponible en el contenedor
+             ventanaServicios.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
+
+             // Si deseas cambiar de Tab en la vista de servicios, puedes hacerlo así:
+             // ventanaServicios.getTabGeneral().setSelectedIndex(0); // Cambiar al Tab 0 si es necesario
+         } else {
+             // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
+             JOptionPane.showMessageDialog(this, 
+                 "Operación cancelada.", 
+                 "Cancelado", 
+                 JOptionPane.INFORMATION_MESSAGE);
+         }
+    }//GEN-LAST:event_btnServiciosActionPerformed
 
     /**
      * @param args the command line arguments

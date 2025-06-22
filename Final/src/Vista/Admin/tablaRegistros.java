@@ -33,43 +33,43 @@ public class tablaRegistros extends javax.swing.JPanel {
         tablaTab2.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); // Para seleccionar solo una fila a la vez
         
         
-        //ahora 
+        
         // Detectar la selección de filas en la primera tabla
         tablaTab1.addMouseListener(new java.awt.event.MouseAdapter() {
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        // Obtener la fila seleccionada donde se hizo clic
-        int selectedRow = tablaTab1.rowAtPoint(evt.getPoint()); // Esto obtiene la fila en el punto donde hiciste clic
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                // Obtener la fila seleccionada donde se hizo clic
+                int selectedRow = tablaTab1.rowAtPoint(evt.getPoint()); // Esto obtiene la fila en el punto donde hiciste clic
 
-        if (selectedRow != -1) {
-            // Obtener el DNI de la fila seleccionada (en la columna 0, asumiendo que el DNI está en la primera columna)
-            String dniSeleccionado = tablaTab1.getValueAt(selectedRow, 0).toString();  // Obtener el DNI de la columna 0
+                if (selectedRow != -1) {
+                    // Obtener el DNI de la fila seleccionada (en la columna 0, asumiendo que el DNI está en la primera columna)
+                    String dniSeleccionado = tablaTab1.getValueAt(selectedRow, 0).toString();  // Obtener el DNI de la columna 0
 
-            // Si el DNI está en otra columna, puedes cambiar el índice (por ejemplo: columna 1 -> `getValueAt(selectedRow, 1)`)
+                    // Si el DNI está en otra columna, puedes cambiar el índice (por ejemplo: columna 1 -> `getValueAt(selectedRow, 1)`)
 
-            // Pasar el DNI a la ventana de notificación
-            if (ventanaNotificacion != null) {
-                ventanaNotificacion.setDniEnVentanaNotificacion(dniSeleccionado);  // Pasar el DNI a la ventana de notificación
+                    // Pasar el DNI a la ventana de notificación
+                    if (ventanaNotificacion != null) {
+                        ventanaNotificacion.setDniEnVentanaNotificacion(dniSeleccionado);  // Pasar el DNI a la ventana de notificación
+                    }
+                }
             }
-        }
-    }
         });
 
-        tablaTab2.addMouseListener(new java.awt.event.MouseAdapter() {
-    public void mouseClicked(java.awt.event.MouseEvent evt) {
-        // Obtener la fila seleccionada en la que hiciste clic
-        int selectedRow = tablaTab2.rowAtPoint(evt.getPoint()); // Obtiene la fila donde hiciste clic
+            tablaTab2.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            // Obtener la fila seleccionada en la que hiciste clic
+            int selectedRow = tablaTab2.rowAtPoint(evt.getPoint()); // Obtiene la fila donde hiciste clic
 
-        if (selectedRow != -1) {
-            // Obtener el DNI de la fila seleccionada (en la columna 0, donde está el DNI)
-            String dniSeleccionado = tablaTab2.getValueAt(selectedRow, 0).toString();  // DNI en la columna 0
+            if (selectedRow != -1) {
+                // Obtener el DNI de la fila seleccionada (en la columna 0, donde está el DNI)
+                String dniSeleccionado = tablaTab2.getValueAt(selectedRow, 0).toString();  // DNI en la columna 0
 
-            // Si tienes la ventana de notificación abierta, pasar el DNI a esa ventana
-            if (ventanaNotificacion != null) {
-                ventanaNotificacion.setDniEnVentanaNotificacion(dniSeleccionado);  // Pasar el DNI a la ventana de notificación
+                // Si tienes la ventana de notificación abierta, pasar el DNI a esa ventana
+                if (ventanaNotificacion != null) {
+                    ventanaNotificacion.setDniEnVentanaNotificacion(dniSeleccionado);  // Pasar el DNI a la ventana de notificación
+                }
             }
-        }
-        }
-        });
+            }
+            });
     }
 
     
@@ -235,4 +235,13 @@ public class tablaRegistros extends javax.swing.JPanel {
     private javax.swing.JTable tablaTab1;
     private javax.swing.JTable tablaTab2;
     // End of variables declaration//GEN-END:variables
+    public boolean isRowSelected() {
+    // Verificar si alguna de las tablas tiene una fila seleccionada
+    int selectedRowTab1 = tablaTab1.getSelectedRow();
+    int selectedRowTab2 = tablaTab2.getSelectedRow();
+
+    // Si alguna fila está seleccionada en cualquiera de las tablas
+    return selectedRowTab1 != -1 || selectedRowTab2 != -1;
+}
+
 }

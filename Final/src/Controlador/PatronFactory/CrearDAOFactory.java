@@ -4,6 +4,8 @@ import Modelo.RegistroPrototype.PrototypeDireccion;
 import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
 import Modelo.RegistroPrototype.PrototypeResiduo;
 import Modelo.RegistroPrototype.PrototypeUsuario;
+import Modelo.ServiciosPrototype.PrototypeAlerta;
+import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
 import Modelo.SugerenciasPrototype.PrototypeNotificacion;
 
 public interface CrearDAOFactory {
@@ -13,4 +15,6 @@ public interface CrearDAOFactory {
     int crearClasificacionResiduo(PrototypeClasificacionResiduo clasificacion); 
     int crearPrototypeIngresoResiduo(PrototypeIngresoResiduo ingreso);
     int crearPrototypeNotificacion(PrototypeNotificacion notificacion);
+    int crearCentroReciclaje(PrototypeCentroReciclaje centroReciclaje);  // Nuevo método
+    int crearAlerta(PrototypeAlerta alerta);  // Nuevo método para crear alertas
 }

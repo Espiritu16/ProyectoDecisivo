@@ -6,6 +6,7 @@ import Modelo.ConexionSingleton.MantenerSession;
 import Vista.Admin.enviarNotificacion;
 import Vista.Admin.tablaRegistros;
 import Vista.Login;
+import Vista.Usuario.ventanaServiciosDireccion;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -16,7 +17,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     //ahora
     private enviarNotificacion ventanaNotificacion;
     private tablaRegistros panelTablaRegistros;
-   
+   private ventanaServiciosDireccionAdmin ventanaRegistrarDireccion;
     
     /**
      * Creates new form VentanaPrincipal
@@ -28,7 +29,8 @@ public class VentanaAdmin extends javax.swing.JFrame {
         // Centrar la ventana en la pantalla
         setLocationRelativeTo(null);  // Esto coloca la ventana en el centro
         btnRegistro.setEnabled(false);
-        
+        btnEstadistica.setEnabled(false);
+        btnNotificaciones.setEnabled(false);
   
     }
     
@@ -68,6 +70,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
         btnTablaRegistro = new javax.swing.JButton();
         btnNotificar = new javax.swing.JToggleButton();
         btnDeslogin = new javax.swing.JButton();
+        btnRegistrarDireccion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(1080, 60));
@@ -114,6 +117,11 @@ public class VentanaAdmin extends javax.swing.JFrame {
         btnServicios.setBackground(new java.awt.Color(102, 153, 255));
         btnServicios.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         btnServicios.setText("Servicios");
+        btnServicios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnServiciosActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnServicios, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 110, 120, 30));
 
         btnNotificaciones.setBackground(new java.awt.Color(102, 153, 255));
@@ -175,6 +183,18 @@ public class VentanaAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(btnDeslogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(950, 10, 120, 30));
 
+        btnRegistrarDireccion.setBackground(new java.awt.Color(165, 214, 167));
+        btnRegistrarDireccion.setFont(new java.awt.Font("Roboto", 1, 16)); // NOI18N
+        btnRegistrarDireccion.setForeground(new java.awt.Color(255, 51, 51));
+        btnRegistrarDireccion.setText("Registrar Direccion");
+        btnRegistrarDireccion.setBorder(null);
+        btnRegistrarDireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarDireccionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnRegistrarDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, 180, 50));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1080, 600));
 
         pack();
@@ -230,29 +250,44 @@ public class VentanaAdmin extends javax.swing.JFrame {
         
          */
         
-        //nuevo
-        // Crear una nueva instancia del panel de registros
-        tablaRegistros panelTabla = new tablaRegistros(); 
+            // Mostrar una ventana de confirmación antes de proceder con la apertura de la tabla de registros
+        int respuesta = JOptionPane.showConfirmDialog(this, 
+            "¿Deseas ver la tabla de registros?", 
+            "Confirmación", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
 
-        // Limpiar el panel actual
-        panelCambiable.removeAll();  
+        // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+        if (respuesta == JOptionPane.YES_OPTION) {
+            // Crear una nueva instancia del panel de registros
+            tablaRegistros panelTabla = new tablaRegistros(); 
 
-        // Crear una nueva instancia de la ventana de notificación
-        ventanaNotificacion = new enviarNotificacion();
+            // Limpiar el panel actual
+            panelCambiable.removeAll();  
 
-        // Pasar la referencia de la ventana de notificación a tablaRegistros
-        panelTabla.setVentanaNotificacion(ventanaNotificacion); 
+            // Crear una nueva instancia de la ventana de notificación
+            ventanaNotificacion = new enviarNotificacion();
 
-        // Agregar el nuevo panel de registros al panelCambiable
-        panelCambiable.add(panelTabla);  
+            // Pasar la referencia de la ventana de notificación a tablaRegistros
+            panelTabla.setVentanaNotificacion(ventanaNotificacion); 
 
-        // Actualizar la vista para reflejar el cambio de panel
-        panelCambiable.revalidate();   
-        panelCambiable.repaint();      
+            // Agregar el nuevo panel de registros al panelCambiable
+            panelCambiable.add(panelTabla);  
 
-        // Ajustar el tamaño del panel de registros al tamaño disponible en el contenedor
-        panelTabla.setSize(panelCambiable.getSize());  
-        
+            // Actualizar la vista para reflejar el cambio de panel
+            panelCambiable.revalidate();   
+            panelCambiable.repaint();      
+
+            // Ajustar el tamaño del panel de registros al tamaño disponible en el contenedor
+            panelTabla.setSize(panelCambiable.getSize());  
+
+        } else {
+            // Si el usuario selecciona "No" o cierra la ventana, muestra un mensaje
+            JOptionPane.showMessageDialog(this, 
+                "Operación cancelada", 
+                "Cancelado", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnTablaRegistroActionPerformed
 
     private void btnNotificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotificarActionPerformed
@@ -285,6 +320,70 @@ public class VentanaAdmin extends javax.swing.JFrame {
         // Cerrar la ventana de administración o la actual
         this.dispose();  // Cerrar la ventana actual (puede ser VentanaAdmin o la que sea)
     }//GEN-LAST:event_btnDesloginActionPerformed
+
+    private void btnRegistrarDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarDireccionActionPerformed
+        // Mostrar una ventana de confirmación antes de proceder con la apertura de la ventana registrarDireccion
+        int respuesta = JOptionPane.showConfirmDialog(this, 
+            "¿Deseas registrar una nueva dirección?", 
+            "Confirmación", 
+            JOptionPane.YES_NO_OPTION, 
+            JOptionPane.QUESTION_MESSAGE);
+
+        // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+        if (respuesta == JOptionPane.YES_OPTION) {
+            // Crear una nueva instancia del JFrame para registrar la dirección
+            registrarDireccion ventanaDireccion = new registrarDireccion();
+
+            // Hacer visible la ventana de registrar dirección
+            ventanaDireccion.setVisible(true);
+
+            // Opcionalmente, puedes cerrar la ventana actual si no la necesitas más
+            // this.dispose();  // Si quieres cerrar la ventana actual después de abrir la nueva
+        } else {
+            // Si el usuario selecciona "No" o cierra la ventana, muestra un mensaje de cancelación
+            JOptionPane.showMessageDialog(this, 
+                "Operación cancelada", 
+                "Cancelado", 
+                JOptionPane.INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btnRegistrarDireccionActionPerformed
+
+    private void btnServiciosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnServiciosActionPerformed
+       // Mostrar una ventana de confirmación antes de proceder con la apertura de la ventana de servicios
+         int respuesta = JOptionPane.showConfirmDialog(this, 
+             "¿Deseas ver los servicios?", 
+             "Confirmación", 
+             JOptionPane.YES_NO_OPTION, 
+             JOptionPane.QUESTION_MESSAGE);
+
+         // Si el usuario selecciona "Sí" (JOptionPane.YES_OPTION)
+         if (respuesta == JOptionPane.YES_OPTION) {
+             // Crear una nueva instancia del panel de servicios (ventanaServiciosDireccion)
+             ventanaServiciosDireccionAdmin ventanaServicios = new ventanaServiciosDireccionAdmin();
+
+             // Limpiar el panel actual (opcional, si deseas borrar el contenido del panel antes de agregar el nuevo)
+             panelCambiable.removeAll();  // Elimina todos los componentes dentro de panelCambiable
+
+             // Agregar el nuevo panel de servicios al panelCambiable
+             panelCambiable.add(ventanaServicios);  // Añadir el panel de servicios
+
+             // Actualizar la vista para reflejar el cambio de panel
+             panelCambiable.revalidate();   // Revalidar para actualizar el diseño
+             panelCambiable.repaint();      // Volver a pintar el panel para reflejar el cambio
+
+             // Ajustar el tamaño del panel de servicios al tamaño disponible en el contenedor
+             ventanaServicios.setSize(panelCambiable.getSize());  // Ajusta el tamaño del nuevo panel
+
+             // Si deseas cambiar de Tab en la vista de servicios, puedes hacerlo así:
+             // ventanaServicios.getTabGeneral().setSelectedIndex(0); // Cambiar al Tab 0 si es necesario
+         } else {
+             // Si el usuario selecciona "No" o cierra la ventana, no hacer nada
+             JOptionPane.showMessageDialog(this, 
+                 "Operación cancelada", 
+                 "Cancelado", 
+                 JOptionPane.INFORMATION_MESSAGE);
+         }
+    }//GEN-LAST:event_btnServiciosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,6 +426,7 @@ public class VentanaAdmin extends javax.swing.JFrame {
     private javax.swing.JButton btnEstadistica;
     private javax.swing.JButton btnNotificaciones;
     private javax.swing.JToggleButton btnNotificar;
+    private javax.swing.JButton btnRegistrarDireccion;
     private javax.swing.JButton btnRegistro;
     private javax.swing.JButton btnServicios;
     private javax.swing.JButton btnTablaRegistro;

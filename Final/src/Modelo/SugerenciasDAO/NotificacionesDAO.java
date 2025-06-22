@@ -13,7 +13,7 @@ public class NotificacionesDAO implements CRUD {
 
             String sql = "{CALL sp_insertar_notificacion(?, ?, ?, ?, ?, ?, ?)}";
             int idGenerado = -1;
-
+            
             try {
                 // Conexión a la base de datos
                 Connection connection = ConexionSingleton.getConexion();

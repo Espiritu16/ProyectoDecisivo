@@ -226,7 +226,7 @@ public class VentanaMensajes extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tablaCorreo);
 
-        tabCorreo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 440));
+        tabCorreo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 420));
 
         tabGeneral.addTab("Correo", tabCorreo);
 
@@ -272,7 +272,7 @@ public class VentanaMensajes extends javax.swing.JPanel {
 
         tabGeneral.addTab("Mensaje(SMS) ", tabSMS);
 
-        add(tabGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 470));
+        add(tabGeneral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 450));
     }// </editor-fold>//GEN-END:initComponents
 
 
