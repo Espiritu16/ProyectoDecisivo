@@ -1,4 +1,4 @@
-package Modelo.Command;
+package Controlador.Command;
 public interface Command {
     void execute();
 }

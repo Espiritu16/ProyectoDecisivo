@@ -4,7 +4,7 @@ import Modelo.ConexionSingleton.ConexionSingleton;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
-import Controlador.CRUD;
+import Modelo.CRUD;
 import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
 
 public class CentroReciclajeDAO implements CRUD {

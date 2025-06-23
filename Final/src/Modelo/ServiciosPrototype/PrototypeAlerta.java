@@ -1,5 +1,6 @@
 package Modelo.ServiciosPrototype;
 
+
 import java.util.Date;
 
 public class PrototypeAlerta implements Cloneable {
@@ -10,8 +11,13 @@ public class PrototypeAlerta implements Cloneable {
 
     // Constructor por defecto
     public PrototypeAlerta() {
-        this.fechaAlerta = new Date(System.currentTimeMillis()); // Fecha actual
-        this.estadoAlerta = "No leída"; // Estado inicial
+    }
+
+    // Constructor
+    public PrototypeAlerta(String mensaje) {
+        this.mensaje = mensaje;
+        this.fechaAlerta = new Date(System.currentTimeMillis());  // Fecha actual
+        this.estadoAlerta = "No leída";  // El estado por defecto
     }
 
     // Getters y Setters
@@ -54,7 +60,7 @@ public class PrototypeAlerta implements Cloneable {
             return (PrototypeAlerta) super.clone();
         } catch (CloneNotSupportedException e) {
             e.printStackTrace();
-            return null;
+            return null;  // Si no se puede clonar, devolvemos null
         }
     }
 }

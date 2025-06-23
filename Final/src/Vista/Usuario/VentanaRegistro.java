@@ -1,9 +1,9 @@
 package Vista.Usuario;
 
-import Modelo.Command.AnteriorCommand;
-import Modelo.Command.Command;
-import Modelo.Command.FinalizarCommand;
-import Modelo.Command.SiguienteCommand;
+import Controlador.Command.AnteriorCommand;
+import Controlador.Command.Command;
+import Controlador.Command.FinalizarCommand;
+import Controlador.Command.SiguienteCommand;
 import Modelo.ConexionSingleton.MantenerSession;
 import Modelo.Observer.BotonObservador;
 import Modelo.Observer.Formulario;

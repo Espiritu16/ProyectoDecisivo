@@ -5,7 +5,7 @@ import java.sql.Date;
 public class PrototypeUsuario implements Cloneable {
 
     private int idUsuario;
-    private String dni;  // NUEVO CAMPO
+    private String dni; 
     private String nombre;
     private String apellido;
     private String correo;

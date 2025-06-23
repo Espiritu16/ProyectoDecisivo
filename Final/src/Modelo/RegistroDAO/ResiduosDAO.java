@@ -2,7 +2,7 @@ package Modelo.RegistroDAO;
 
 import Modelo.RegistroPrototype.PrototypeResiduo;
 import Modelo.ConexionSingleton.ConexionSingleton;
-import Controlador.CRUD;
+import Modelo.CRUD;
 
 import java.sql.*;
 import javax.swing.JOptionPane;

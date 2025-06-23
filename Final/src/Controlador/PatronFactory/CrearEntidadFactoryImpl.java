@@ -1,6 +1,6 @@
 package Controlador.PatronFactory;
 
-import Controlador.CRUD;
+import Modelo.CRUD;
 import Modelo.RegistroDAO.ClasificacionResiduosDAO;
 import Modelo.RegistroDAO.DireccionDAO;
 import Modelo.RegistroDAO.IngresoResiduoDAO;
@@ -17,7 +17,6 @@ import Modelo.ServiciosPrototype.PrototypeAlerta;
 import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
 import Modelo.SugerenciasDAO.NotificacionesDAO;
 import Modelo.SugerenciasPrototype.PrototypeNotificacion;
-
 
 public class CrearEntidadFactoryImpl implements CrearDAOFactory {
 

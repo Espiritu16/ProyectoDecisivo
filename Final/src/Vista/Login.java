@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
+
+
 import javax.swing.JOptionPane;
 import Modelo.ConexionSingleton.MantenerSession;
 import Modelo.Observer.BotonObservador;
 import Modelo.Observer.Formulario;
-import Modelo.Proxy.UsuarioProxy;
+import Controlador.Proxy.UsuarioProxy;
 import Vista.Usuario.Registrarse;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -82,7 +80,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(1080, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(165, 214, 167));

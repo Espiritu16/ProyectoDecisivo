@@ -1,4 +1,4 @@
-package Modelo.Proxy;
+package Controlador.Proxy;
 import Modelo.ConexionSingleton.ConexionSingleton;
 import java.sql.*;
 import java.time.LocalDateTime; // Necesario para obtener la fecha y hora actual en Java 8+

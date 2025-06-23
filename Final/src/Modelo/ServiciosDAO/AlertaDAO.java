@@ -1,6 +1,6 @@
 package Modelo.ServiciosDAO;
 
-import Controlador.CRUD;
+import Modelo.CRUD;
 import Modelo.ConexionSingleton.ConexionSingleton;
 import Modelo.ServiciosPrototype.PrototypeAlerta;
 import java.sql.*;

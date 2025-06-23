@@ -1,4 +1,4 @@
-package Modelo.Command;
+package Controlador.Command;
 
 import Controlador.PatronFactory.CrearDAOFactory;
 import Controlador.PatronFactory.CrearEntidadFactoryImpl;

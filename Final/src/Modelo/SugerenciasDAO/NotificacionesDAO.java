@@ -1,5 +1,5 @@
 package Modelo.SugerenciasDAO;
-import Controlador.CRUD;
+import Modelo.CRUD;
 import Modelo.ConexionSingleton.ConexionSingleton;
 import Modelo.SugerenciasPrototype.PrototypeNotificacion;
 import java.sql.*;

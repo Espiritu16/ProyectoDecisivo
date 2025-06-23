@@ -1,4 +1,4 @@
-package Modelo.Command;
+package Controlador.Command;
 
 import javax.swing.JTabbedPane;
 

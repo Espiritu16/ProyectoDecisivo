@@ -1,4 +1,4 @@
-package Modelo.Proxy;
+package Controlador.Proxy;
 
 import Vista.Admin.VentanaAdmin;
 import Vista.Usuario.VentanaUsuario;

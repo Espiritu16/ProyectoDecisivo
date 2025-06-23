@@ -1,4 +1,4 @@
-package Modelo.Facade;
+package Controlador.Facade;
 
 import Modelo.RegistroPrototype.PrototypeClasificacionResiduo;
 import Modelo.RegistroPrototype.PrototypeDireccion;

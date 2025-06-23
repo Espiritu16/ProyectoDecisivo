@@ -2,7 +2,7 @@ package Modelo.RegistroDAO;
 
 import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
 import Modelo.ConexionSingleton.ConexionSingleton;
-import Controlador.CRUD;
+import Modelo.CRUD;
 
 import java.sql.*;
 import java.util.ArrayList;

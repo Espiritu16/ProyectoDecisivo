@@ -8,7 +8,7 @@ public class PrototypeResiduo implements Cloneable {
     private String nombre;
     private int idClasificacion;
     private String descripcion;
-    private double peso; // ✅ NUEVO campo reemplaza unidad_medida
+    private double peso; 
     private String peligrosidad;
     private Date fecha_registro;
 
