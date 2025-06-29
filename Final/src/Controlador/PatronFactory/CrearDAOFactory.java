@@ -1,12 +1,12 @@
 package Controlador.PatronFactory;
-import Modelo.RegistroPrototype.PrototypeClasificacionResiduo;
-import Modelo.RegistroPrototype.PrototypeDireccion;
-import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
-import Modelo.RegistroPrototype.PrototypeResiduo;
-import Modelo.RegistroPrototype.PrototypeUsuario;
-import Modelo.ServiciosPrototype.PrototypeAlerta;
-import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
-import Modelo.SugerenciasPrototype.PrototypeNotificacion;
+import Modelo.Registro.Prototype.PrototypeClasificacionResiduo;
+import Modelo.Registro.Prototype.PrototypeDireccion;
+import Modelo.Registro.Prototype.PrototypeIngresoResiduo;
+import Modelo.Registro.Prototype.PrototypeResiduo;
+import Modelo.Registro.Prototype.PrototypeUsuario;
+import Modelo.Servicios.Prototype.PrototypeAlerta;
+import Modelo.Servicios.Prototype.PrototypeCentroReciclaje;
+import Modelo.Sugerencias.Prototype.PrototypeNotificacion;
 
 public interface CrearDAOFactory {
     int crearUsuario(PrototypeUsuario usuario);

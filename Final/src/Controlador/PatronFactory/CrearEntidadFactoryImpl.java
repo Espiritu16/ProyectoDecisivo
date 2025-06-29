@@ -1,22 +1,22 @@
 package Controlador.PatronFactory;
 
-import Modelo.CRUD;
-import Modelo.RegistroDAO.ClasificacionResiduosDAO;
-import Modelo.RegistroDAO.DireccionDAO;
-import Modelo.RegistroDAO.IngresoResiduoDAO;
-import Modelo.RegistroDAO.ResiduosDAO;
-import Modelo.RegistroDAO.UsuarioDAO;
-import Modelo.RegistroPrototype.PrototypeClasificacionResiduo;
-import Modelo.RegistroPrototype.PrototypeDireccion;
-import Modelo.RegistroPrototype.PrototypeIngresoResiduo;
-import Modelo.RegistroPrototype.PrototypeResiduo;
-import Modelo.RegistroPrototype.PrototypeUsuario;
-import Modelo.ServiciosDAO.AlertaDAO;
-import Modelo.ServiciosDAO.CentroReciclajeDAO;
-import Modelo.ServiciosPrototype.PrototypeAlerta;
-import Modelo.ServiciosPrototype.PrototypeCentroReciclaje;
-import Modelo.SugerenciasDAO.NotificacionesDAO;
-import Modelo.SugerenciasPrototype.PrototypeNotificacion;
+import Modelo.ISP.DAO.CRUD;
+import Modelo.Registro.DAO.ClasificacionResiduosDAO;
+import Modelo.Registro.DAO.DireccionDAO;
+import Modelo.Registro.DAO.IngresoResiduoDAO;
+import Modelo.Registro.DAO.ResiduosDAO;
+import Modelo.Registro.DAO.UsuarioDAO;
+import Modelo.Registro.Prototype.PrototypeClasificacionResiduo;
+import Modelo.Registro.Prototype.PrototypeDireccion;
+import Modelo.Registro.Prototype.PrototypeIngresoResiduo;
+import Modelo.Registro.Prototype.PrototypeResiduo;
+import Modelo.Registro.Prototype.PrototypeUsuario;
+import Modelo.Servicios.DAO.AlertaDAO;
+import Modelo.Servicios.DAO.CentroReciclajeDAO;
+import Modelo.Servicios.Prototype.PrototypeAlerta;
+import Modelo.Servicios.Prototype.PrototypeCentroReciclaje;
+import Modelo.Sugerencias.DAO.NotificacionesDAO;
+import Modelo.Sugerencias.Prototype.PrototypeNotificacion;
 
 public class CrearEntidadFactoryImpl implements CrearDAOFactory {
 
